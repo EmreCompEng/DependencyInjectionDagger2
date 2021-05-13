@@ -13,7 +13,7 @@ class AppModule {
 
         @Provides
         fun testString(): String {
-            return "Fuck You!!!!"
+            return "Love You!!!!"
         }
 
         @Provides
