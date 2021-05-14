@@ -1,11 +1,9 @@
-package com.emreergun.dependencyinjectiondagger2.di
+package com.emreergun.dependencyinjectiondagger2.di.viewmodels
 
-import androidx.lifecycle.HasDefaultViewModelProviderFactory
 import androidx.lifecycle.ViewModelProvider
-import com.emreergun.dependencyinjectiondagger2.viewmodels.ViewModelFactory
+import com.emreergun.dependencyinjectiondagger2.di.viewmodels.ViewModelFactory
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 @Module
 abstract class ViewModelFactoryModule {

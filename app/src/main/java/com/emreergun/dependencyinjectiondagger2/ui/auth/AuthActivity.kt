@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.RequestManager
 import com.emreergun.dependencyinjectiondagger2.R
-import com.emreergun.dependencyinjectiondagger2.viewmodels.ViewModelFactory
+import com.emreergun.dependencyinjectiondagger2.di.viewmodels.ViewModelFactory
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -29,6 +29,7 @@ class AuthActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
         viewModel=ViewModelProvider(this,provideViewModelFactory).get(AuthViewModel::class.java)
+        viewModel.getUser(1)
 
 
         setLogo()

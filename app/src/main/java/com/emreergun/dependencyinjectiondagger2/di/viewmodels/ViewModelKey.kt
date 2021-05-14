@@ -1,4 +1,4 @@
-package com.emreergun.dependencyinjectiondagger2.di
+package com.emreergun.dependencyinjectiondagger2.di.viewmodels
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

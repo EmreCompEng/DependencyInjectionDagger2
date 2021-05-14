@@ -1,4 +1,4 @@
-package com.emreergun.dependencyinjectiondagger2.viewmodels
+package com.emreergun.dependencyinjectiondagger2.di.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

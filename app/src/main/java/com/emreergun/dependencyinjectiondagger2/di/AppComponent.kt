@@ -2,6 +2,7 @@ package com.emreergun.dependencyinjectiondagger2.di
 
 import android.app.Application
 import com.emreergun.dependencyinjectiondagger2.BaseApplication
+import com.emreergun.dependencyinjectiondagger2.di.viewmodels.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

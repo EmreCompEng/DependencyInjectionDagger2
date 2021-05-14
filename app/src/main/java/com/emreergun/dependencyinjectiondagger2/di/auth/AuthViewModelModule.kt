@@ -1,7 +1,7 @@
 package com.emreergun.dependencyinjectiondagger2.di.auth
 
 import androidx.lifecycle.ViewModel
-import com.emreergun.dependencyinjectiondagger2.di.ViewModelKey
+import com.emreergun.dependencyinjectiondagger2.di.viewmodels.ViewModelKey
 import com.emreergun.dependencyinjectiondagger2.ui.auth.AuthViewModel
 import dagger.Binds
 import dagger.Module

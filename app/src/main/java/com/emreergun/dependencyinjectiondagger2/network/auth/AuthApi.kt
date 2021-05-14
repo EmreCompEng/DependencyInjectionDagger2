@@ -1,11 +1,13 @@
 package com.emreergun.dependencyinjectiondagger2.network.auth
 
-import android.telecom.Call
-import okhttp3.ResponseBody
+import com.emreergun.dependencyinjectiondagger2.models.User
+import io.reactivex.Flowable
+import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface AuthApi {
 
-   /* @GET
-    fun getFakeStaff():Call<>*/
+    @GET("users/{id}")
+    fun getUser(@Path("id") id: Int): Observable<User>
 }
