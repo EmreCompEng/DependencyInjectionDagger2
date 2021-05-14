@@ -2,6 +2,9 @@ package com.emreergun.dependencyinjectiondagger2.ui.auth
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.RequestManager
 import com.emreergun.dependencyinjectiondagger2.R
@@ -13,6 +16,8 @@ import javax.inject.Inject
 class AuthActivity : DaggerAppCompatActivity() {
 
     private lateinit var viewModel: AuthViewModel
+    private lateinit var userEditText: EditText
+    private lateinit var loginButton: Button
 
     @Inject
     lateinit var logo:Drawable
@@ -28,12 +33,36 @@ class AuthActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
+
         viewModel=ViewModelProvider(this,provideViewModelFactory).get(AuthViewModel::class.java)
-        viewModel.getUser(1)
+        userEditText=findViewById(R.id.editTextTextUserId)
+        loginButton=findViewById(R.id.buttonLogin)
+
+        loginButton.setOnClickListener {
+            // Eğer User Id Boş değil ise
+            if (!userEditText.text.isNullOrEmpty()){
+                val userID=userEditText.text.toString().toInt()
+                Log.d(TAG, "onCreate: $userID")
+                viewModel.authenticateWithId(userID)
+            }
+            // Eğer User Id Boş ise
+            else{
+                Log.d(TAG, "onCreate: userEditText is null or empty")
+            }
+        }
 
 
         setLogo()
+        subscribeObservers() // User Live Data dinlenmeye alındı , Her türlü değişimde dinlenilecek
+    }
 
+    // User Live Datasındaki updateleri dinle
+    private fun subscribeObservers(){
+        viewModel.observeUser().observeForever {user->
+            if (user!=null){
+                Log.d(TAG, "subscribeObservers: ${user.email}")
+            }
+        }
     }
 
     fun setLogo(){
