@@ -6,16 +6,19 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 
 // Bütün Omurga burada
 // Uygulama boyunca kontrolde olan component burasıdır
 // AppComponentta kullanılacak moduller eklenir
 
+@Singleton // Application boyunca tek sefer üretilip sürekli bu instance kullanılacak moduller buraya yazılır
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
         ActivityBuildersModule::class,
-        AppModule::class
+        AppModule::class,
+        ViewModelFactoryModule::class,
     ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
@@ -31,22 +34,8 @@ interface AppComponent : AndroidInjector<BaseApplication> {
 
 }
 
+
 // BaseApplication = client , AppComponent =Servis ,
 // Genel olarak Componentler = Servis , Activities & Fragments = Clients
-
-
 // Uygulama Boyunca kullanılacak instanceler , objeler appComponent seviyesindedir
 // AndroidInjector<BaseApplication> ==> void inject(application Application) yazımını engeller daha kolaylık sağlar
-
-
-// @BindInstance
-/*
-    @Component.Builder
-   interface Builder {
-      @BindsInstance Builder userName(@UserName String userName);
-
-      AppComponent build();
-     ...
-   }
-
- */
