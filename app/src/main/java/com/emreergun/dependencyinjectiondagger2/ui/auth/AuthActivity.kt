@@ -1,5 +1,6 @@
 package com.emreergun.dependencyinjectiondagger2.ui.auth
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.RequestManager
 import com.emreergun.dependencyinjectiondagger2.R
 import com.emreergun.dependencyinjectiondagger2.di.viewmodels.ViewModelFactory
+import com.emreergun.dependencyinjectiondagger2.ui.main.MainActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -63,10 +65,12 @@ class AuthActivity : DaggerAppCompatActivity() {
                 when (userAuthResource.status) {
                     AuthResource.AuthStatus.LOADING -> {
                         showProgressBar(true)
-                        Log.d(TAG, "subscribeObservers: LOGIN SUCCESS :${userAuthResource.data?.email}")
+
                     }
                     AuthResource.AuthStatus.AUTHENTICATED -> {
+                        Log.d(TAG, "subscribeObservers: LOGIN SUCCESS :${userAuthResource.data?.name}")
                         showProgressBar(false)
+                        onLoginSuccess()
                     }
                     AuthResource.AuthStatus.ERROR -> {
                         showProgressBar(false)
@@ -76,15 +80,16 @@ class AuthActivity : DaggerAppCompatActivity() {
                     AuthResource.AuthStatus.NOT_AUTHENTICATED -> {
                         showProgressBar(false)
                     }
-                    AuthResource.AuthStatus.COMPLETED -> {
-                        Log.d(TAG, "subscribeObservers: COMPLETED...")
-                        showProgressBar(false)
-                    }
                 }
             }
         })
     }
 
+    private fun onLoginSuccess(){
+        val intent=Intent(this,MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
     private fun showProgressBar(isShow: Boolean) {
         progresBar.isVisible = isShow
     }

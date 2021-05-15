@@ -8,13 +8,13 @@ sealed class AuthResource<T>(
     val message: String? = null
 ) {
     enum class AuthStatus {
-        AUTHENTICATED, ERROR, LOADING, NOT_AUTHENTICATED,COMPLETED
+        AUTHENTICATED, ERROR, LOADING, NOT_AUTHENTICATED
     }
 
     class Authenticated<T>(data: T? = null) : AuthResource<T>(AuthStatus.AUTHENTICATED, data)
     class Error<T>(msg: String, data: T? = null) : AuthResource<T>(AuthStatus.ERROR, data, msg)
     class Loading<T>(data: T? = null) : AuthResource<T>(AuthStatus.LOADING, data)
     class Logout<T> : AuthResource<T>(AuthStatus.NOT_AUTHENTICATED)
-    class Completed<T>(data: T? = null) : AuthResource<T>(AuthStatus.COMPLETED)
+
 
 }

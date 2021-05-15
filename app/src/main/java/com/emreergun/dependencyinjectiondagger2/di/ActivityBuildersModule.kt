@@ -3,6 +3,7 @@ package com.emreergun.dependencyinjectiondagger2.di
 import com.emreergun.dependencyinjectiondagger2.di.auth.AuthModule
 import com.emreergun.dependencyinjectiondagger2.di.auth.AuthViewModelModule
 import com.emreergun.dependencyinjectiondagger2.ui.auth.AuthActivity
+import com.emreergun.dependencyinjectiondagger2.ui.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -14,6 +15,9 @@ abstract class ActivityBuildersModule { // Activitler için toplu modüldür , i
         modules = [AuthViewModelModule::class ,AuthModule::class]
     )
     abstract fun contributeAuthActivity(): AuthActivity  // AuthActivity @inject ile verileri çekebilir ,Bunun Tanımı yapıldı
+
+    @ContributesAndroidInjector
+    abstract fun mainActivity():MainActivity
 
 
 }
