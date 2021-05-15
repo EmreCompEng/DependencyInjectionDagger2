@@ -57,26 +57,20 @@ class AuthActivity : DaggerAppCompatActivity() {
     // Bütün durumlar bu şekilde kontrol edildi
     // Bütün yapıları bu şekilde tutumaya çalış :)
     private fun subscribeObservers() {
-        viewModel.observeUser().observe(this, { userAuthResource ->
+        viewModel.observeAuthState() // Cache'deki Live Datayı dinler
+            .observe(this, { userAuthResource ->
             if (userAuthResource != null) {
                 when (userAuthResource.status) {
                     AuthResource.AuthStatus.LOADING -> {
                         showProgressBar(true)
-                        Log.d(
-                            TAG,
-                            "subscribeObservers: LOGIN SUCCESS :${userAuthResource.data?.email}"
-                        )
+                        Log.d(TAG, "subscribeObservers: LOGIN SUCCESS :${userAuthResource.data?.email}")
                     }
                     AuthResource.AuthStatus.AUTHENTICATED -> {
                         showProgressBar(false)
                     }
                     AuthResource.AuthStatus.ERROR -> {
                         showProgressBar(false)
-                        Toast.makeText(
-                            this,
-                            userAuthResource.message + "\n 1 ile 10 arasında sayı giriniz",
-                            Toast.LENGTH_LONG
-                        )
+                        Toast.makeText(this, userAuthResource.message + "\n 1 ile 10 arasında sayı giriniz", Toast.LENGTH_LONG)
                             .show()
                     }
                     AuthResource.AuthStatus.NOT_AUTHENTICATED -> {

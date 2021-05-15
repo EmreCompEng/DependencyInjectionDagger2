@@ -2,6 +2,7 @@ package com.emreergun.dependencyinjectiondagger2.di
 
 import android.app.Application
 import com.emreergun.dependencyinjectiondagger2.BaseApplication
+import com.emreergun.dependencyinjectiondagger2.SessionManager
 import com.emreergun.dependencyinjectiondagger2.di.viewmodels.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component
@@ -24,6 +25,7 @@ import javax.inject.Singleton
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
 
+    fun sessionManager():SessionManager // Uygulama boyunca heryerden ulaşılabilmesi için eklendi
 
     @Component.Builder
     interface Builder {
