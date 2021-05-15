@@ -47,7 +47,7 @@ class ProfileFragment : DaggerFragment() {
         // Fragmentlerın kendi yaşam dögüleri olduğu için activty'lerden farklı bir şekilde yapıldı
         // bu yöntemle yap her zaman
 
-        viewModel.getAuthenticatedUser().removeObservers(viewLifecycleOwner) // silmek çok mantıklı olacaktır
+        viewModel.getAuthenticatedUser().removeObservers(viewLifecycleOwner) // Fragmentlerda Mutlaka ilk başta silmek gerekir ( memory leak)
         viewModel.getAuthenticatedUser().observe(viewLifecycleOwner,{authResource->
             if (authResource!=null){
                 when(authResource.status){
