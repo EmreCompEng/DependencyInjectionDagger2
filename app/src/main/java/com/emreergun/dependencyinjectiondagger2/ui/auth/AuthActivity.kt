@@ -78,6 +78,7 @@ class AuthActivity : DaggerAppCompatActivity() {
                             .show()
                     }
                     AuthResource.AuthStatus.NOT_AUTHENTICATED -> {
+                        Log.d(TAG, "subscribeObservers: NOT_AUTHENTICATED")
                         showProgressBar(false)
                     }
                 }

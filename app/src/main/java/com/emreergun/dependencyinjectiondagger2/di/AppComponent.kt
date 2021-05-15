@@ -25,7 +25,7 @@ import javax.inject.Singleton
 )
 interface AppComponent : AndroidInjector<BaseApplication> {
 
-    fun sessionManager():SessionManager // Uygulama boyunca heryerden ulaşılabilmesi için eklendi
+    fun sessionManager():SessionManager // Uygulama boyunca tek sefer oluşturulur heryerden ulaşılabilmesi sağlanr
 
     @Component.Builder
     interface Builder {

@@ -32,10 +32,14 @@ class AuthViewModel @Inject constructor(
                 override fun onSuccess(user: User) {
                     Log.d(TAG, "onNext: ${user.name}")
                     sessionManager.cachedUserLiveData.value=AuthResource.Authenticated(user)
+                    onCleared()
+                    dispose()
                 }
                 override fun onError(e: Throwable) {
                     Log.d(TAG, "onError: $e")
                     sessionManager.cachedUserLiveData.value=AuthResource.Error("Hata")
+                    onCleared()
+                    dispose()
                 }
             })
 

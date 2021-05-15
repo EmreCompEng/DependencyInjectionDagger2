@@ -11,7 +11,9 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityBuildersModule { // Activitler için toplu modüldür , inject edilecek activityler burada belirtilir
 
     // AuthActivity de mullanılacak moduller eklenir
-    @ContributesAndroidInjector(
+
+
+    @ContributesAndroidInjector( // SubComponents sadece bu activity den ulaşılır
         modules = [AuthViewModelModule::class ,AuthModule::class]
     )
     abstract fun contributeAuthActivity(): AuthActivity  // AuthActivity @inject ile verileri çekebilir ,Bunun Tanımı yapıldı

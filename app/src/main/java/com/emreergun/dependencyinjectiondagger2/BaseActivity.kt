@@ -18,8 +18,9 @@ abstract class BaseActivity :DaggerAppCompatActivity(){
     @Inject
     lateinit var sessionManager: SessionManager
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         subscribeObservers()
     }
 
@@ -29,15 +30,17 @@ abstract class BaseActivity :DaggerAppCompatActivity(){
                 if (userAuthResource != null) {
                     when (userAuthResource.status) {
                         AuthResource.AuthStatus.LOADING -> {
-                            Log.d(TAG, "subscribeObservers: LOGIN SUCCESS :${userAuthResource.data?.email}")
+                            Log.d(TAG, "$TAG Login LOADING")
                         }
                         AuthResource.AuthStatus.AUTHENTICATED -> {
-
+                            Log.d(TAG, "$TAG Login AUTHENTICATED")
                         }
                         AuthResource.AuthStatus.ERROR -> {
-                            Log.d(TAG, "subscribeObservers: ${userAuthResource.message}")
+                            Log.d(TAG, "$TAG Login ERROR ${userAuthResource.message}")
+
                         }
                         AuthResource.AuthStatus.NOT_AUTHENTICATED -> {
+                            Log.d(TAG, "$TAG Login NOT_AUTHENTICATED")
                             navLoginScreen()
                         }
 
