@@ -3,6 +3,7 @@ package com.emreergun.dependencyinjectiondagger2.network.auth
 import com.emreergun.dependencyinjectiondagger2.models.User
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -10,4 +11,7 @@ interface AuthApi {
 
     @GET("users/{id}")
     fun getUser(@Path("id") id: Int): Flowable<User>
+
+    @GET("users/{id}")
+    fun getUserTestObservable(@Path("id") id: Int): Single<User>
 }
