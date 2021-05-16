@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.emreergun.dependencyinjectiondagger2.R
 import com.emreergun.dependencyinjectiondagger2.di.viewmodels.ViewModelFactory
-import com.emreergun.dependencyinjectiondagger2.models.User
+import com.emreergun.dependencyinjectiondagger2.models.user.User
 import com.emreergun.dependencyinjectiondagger2.ui.auth.AuthResource
 import dagger.android.support.DaggerFragment
 import java.lang.StringBuilder

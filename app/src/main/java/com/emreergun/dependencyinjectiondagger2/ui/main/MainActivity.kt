@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -26,15 +28,38 @@ class MainActivity : NavigationView.OnNavigationItemSelectedListener, BaseActivi
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.profile_drawer->{
-                navController.navigate(R.id.profileFragment) // Novigat Other Fragment
+                val navOptions =NavOptions.Builder()
+                    .setPopUpTo(R.id.main_nav,true)
+                    .build()
+                navController.navigate(R.id.profileFragment,null,navOptions) // Novigat Other Fragment
             }
             R.id.posts_drawer->{
-                navController.navigate(R.id.postFragment) // Novigat Other Fragment
+                // Tekrardan aynı fragmente stack yerleştirmemesi için zaten aynı fragmentta ise bir değişiklik yapma
+                if (isValidDestination(R.id.postFragment)){
+                    navController.navigate(R.id.postFragment) // Novigat Other Fragment
+                }
+
+            }
+            android.R.id.home->{
+                Toast.makeText(this,"Home Basıldı",Toast.LENGTH_SHORT).show()
+                return if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                } else
+                    false
+
             }
         }
         item.isChecked = true
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+    private fun isValidDestination(destination:Int): Boolean {
+        return destination!=navController.currentDestination?.id
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController,drawerLayout) || super.onSupportNavigateUp()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

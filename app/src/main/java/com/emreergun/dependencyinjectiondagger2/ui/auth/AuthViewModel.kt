@@ -3,7 +3,7 @@ package com.emreergun.dependencyinjectiondagger2.ui.auth
 import android.util.Log
 import androidx.lifecycle.*
 import com.emreergun.dependencyinjectiondagger2.SessionManager
-import com.emreergun.dependencyinjectiondagger2.models.User
+import com.emreergun.dependencyinjectiondagger2.models.user.User
 import com.emreergun.dependencyinjectiondagger2.network.auth.AuthApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver

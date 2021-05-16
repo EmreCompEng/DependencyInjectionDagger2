@@ -2,10 +2,9 @@ package com.emreergun.dependencyinjectiondagger2.ui.main.profile
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.emreergun.dependencyinjectiondagger2.SessionManager
-import com.emreergun.dependencyinjectiondagger2.models.User
+import com.emreergun.dependencyinjectiondagger2.models.user.User
 import com.emreergun.dependencyinjectiondagger2.ui.auth.AuthResource
 import javax.inject.Inject
 

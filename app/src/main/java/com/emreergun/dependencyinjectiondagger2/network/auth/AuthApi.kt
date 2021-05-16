@@ -1,8 +1,6 @@
 package com.emreergun.dependencyinjectiondagger2.network.auth
 
-import com.emreergun.dependencyinjectiondagger2.models.User
-import io.reactivex.Flowable
-import io.reactivex.Observable
+import com.emreergun.dependencyinjectiondagger2.models.user.User
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

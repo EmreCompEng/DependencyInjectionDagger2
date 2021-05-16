@@ -1,4 +1,4 @@
-package com.emreergun.dependencyinjectiondagger2.models
+package com.emreergun.dependencyinjectiondagger2.models.user
 
 
 import com.google.gson.annotations.SerializedName
