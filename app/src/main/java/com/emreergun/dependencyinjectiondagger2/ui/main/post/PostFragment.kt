@@ -21,9 +21,9 @@ class PostFragment : DaggerFragment() {
     private lateinit var viewModel:PostViewModel
 
     @Inject
-    lateinit var adapter: PostRecyclerViewAdapter
+    lateinit var adapter: PostRecyclerViewAdapter // MainModule
     @Inject
-    lateinit var layoutManager: LinearLayoutManager
+    lateinit var layoutManager: LinearLayoutManager  // appModule
     @Inject
     lateinit var provideFactory: ViewModelFactory
 
