@@ -2,7 +2,9 @@ package com.emreergun.dependencyinjectiondagger2.di
 
 import android.app.Application
 import android.graphics.drawable.Drawable
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
@@ -54,6 +56,13 @@ class AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // Retrofit çağrışarını observable türüne dönüştürür
                 .build()
+        }
+
+
+        @Singleton
+        @Provides
+        fun provideLinearLayoutManager(application: Application): LinearLayoutManager {
+            return LinearLayoutManager(application,LinearLayoutManager.VERTICAL,false)
         }
 
     }

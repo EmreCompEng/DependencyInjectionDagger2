@@ -20,7 +20,10 @@ class PostFragment : DaggerFragment() {
     private lateinit var recyclerView:RecyclerView
     private lateinit var viewModel:PostViewModel
 
-    // Inject viewMdoel
+    @Inject
+    lateinit var adapter: PostRecyclerViewAdapter
+    @Inject
+    lateinit var layoutManager: LinearLayoutManager
     @Inject
     lateinit var provideFactory: ViewModelFactory
 
@@ -32,14 +35,18 @@ class PostFragment : DaggerFragment() {
         return inflater.inflate(R.layout.fragment_post, container, false)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        recyclerView.layoutManager=null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView=view.findViewById(R.id.postRecyclerView)
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-
+        recyclerView.layoutManager=layoutManager
+        recyclerView.adapter=adapter
         viewModel=ViewModelProvider(this,provideFactory).get(PostViewModel::class.java)
         subscribeObservers()
-
     }
 
     private fun subscribeObservers() {
@@ -51,6 +58,8 @@ class PostFragment : DaggerFragment() {
                 }
                 PostResource.Status.SUCCESS->{
                     Log.d(TAG, "Success...")
+                    adapter.setPostList(postResource.data!!)
+
                 }
                 PostResource.Status.ERROR->{
                     Log.d(TAG, "Error => ${postResource.message}")
